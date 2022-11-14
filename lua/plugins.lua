@@ -6,6 +6,10 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
+  
+  use 'junegunn/fzf'
+
+  use 'BurntSushi/ripgrep'
   use 'nvim-telescope/telescope-file-browser.nvim'
   --
   -- nvim-tree
@@ -20,6 +24,8 @@ return require('packer').startup(function(use)
   use 'catppuccin/nvim'
   use 'bluz71/vim-moonfly-colors'
   use {'dracula/vim', as = 'dracula'}
+  use 'cocopon/iceberg.vim'
+  use 'rebelot/kanagawa.nvim'
 
   -- Bufferline
   use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
@@ -40,8 +46,6 @@ return require('packer').startup(function(use)
   }
 
   use 'L3MON4D3/LuaSnip'
-  -- Prettier
-    -- use 'prettier/vim-prettier'
 
   -- buffdelete
     -- use 'famiu/bufdelete.nvim'
@@ -62,8 +66,6 @@ return require('packer').startup(function(use)
   -- Terminal
   use "akinsho/toggleterm.nvim"
 
-  -- null-ls
-  use "jose-elias-alvarez/null-ls.nvim"
 
 
   -- friendly-snippets
@@ -71,10 +73,10 @@ return require('packer').startup(function(use)
 
 
   -- treesiter
-  -- use {
-  --     'nvim-treesitter/nvim-treesitter',
-  --     -- run = ':TSUpdate'
-  -- }
+  use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate'
+  }
 
   use 'ThePrimeagen/harpoon'
 
@@ -88,24 +90,23 @@ return require('packer').startup(function(use)
       config = function() require("nvim-autopairs").setup {} end
   }
 
+  use {
+      "windwp/nvim-ts-autotag",
+      config = function() require("nvim-ts-autotag").setup {} end
+  }
+
   -- use "godlygeek/tabular"
 
     -- use "mg979/vim-visual-multi"
 
   use "ThePrimeagen/vim-be-good"
 
-    use({
-        "glepnir/lspsaga.nvim",
-        branch = "main",
-        config = function()
-            local saga = require("lspsaga")
+  use "glepnir/lspsaga.nvim"
 
-            saga.init_lsp_saga({
-                -- your configuration
-            })
-        end,
-    })
+  use "jose-elias-alvarez/null-ls.nvim" -- null-ls
+  use 'MunifTanjim/prettier.nvim' -- Prettier
 
-    use { "nvim-telescope/telescope-file-browser.nvim" }
+  use "lewis6991/gitsigns.nvim"
 
+  use 'folke/which-key.nvim'
 end)

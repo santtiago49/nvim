@@ -27,6 +27,7 @@ map("n", "s", "<Right>", {}) -- Right
 map("n", "<F1>", "", {})
 
 -- visual mode
+-- map("v", "f", "t", opts) -- Down
 map("v", "H", "<Down>", {}) -- Down
 map("v", "T", "<Up>", {}) -- Up
 -- map("v", "h", "<Down>", {}) -- Down
@@ -79,9 +80,14 @@ map("n", "<C-f>", ":NvimTreeFocus<CR>", opts) -- Shift + f
 map("n", "", ":Bdelete<CR>", opts)
 
 -- Telescope --
-map("n", "<leader>ff", ":Telescope file_browser<CR>", opts)
-map("n", "<leader>fg", ":Telescope git_files<CR>", opts)
--- map("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
+-- map("n", "<leader>ff", "<cmd>lua require('telescope').extensions.file_browser.file_browser({ path = "%:p:h" })", opts)
+map("n", "<leader>FF", '<cmd>lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", hidden=true, layout_config={prompt_position="top"} })<cr>', opts)
+map("n", "<leader>fg", ':Telescope find_files<CR>', opts)
+map("n", "<leader>ff", ':Telescope git_files<CR>', opts)
+-- map("n", "<leader>ff", ':FZF<cr>', opts)
+-- map("n", "<leader>fb", '<cmd>lua require("telescope").extensions.file_browser.folder_browser()<cr>', opts)
+-- map("n", "<leader>fg", ":Telescope git_files<CR>", opts)
+-- map("n", "<leader>fl", "<cmd>lua require('telescope.builtin').live_grep({grep_open_files=true})<CR>", opts)
 map("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
 
 function _G.config_files()
@@ -105,7 +111,7 @@ map("t", "<esc>", [[<C-\><C-n>]], opts)
 
 -- Greatest remap ever
 -- map("v", "<leader>p", "\"_dP", opts)
-map("v", "<leader>p", [[<c-r>"]], opts)
+-- map("v", "<leader>p", [[<c-r>"]], opts)
 
 -- Toggling all terminals
 map("n", "<c-l>", [[:ToggleTermToggleAll<CR>]], opts)
@@ -117,5 +123,20 @@ map("n", "2<c-l>", [[<C-\><C-n>:2ToggleTerm<CR>]], opts)
 map("n", "3<c-l>", [[<C-\><C-n>:3ToggleTerm<CR>]], opts)
 
 
+vim.keymap.set('n', '<C-r>', ':Lspsaga diagnostic_jump_next<cr>', opts)
+vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<cr>', opts)
+vim.keymap.set('n', 'gd', '<cmd>Lspsaga lsp_finder<cr>', opts)
+vim.keymap.set('i', '<C-k>', '<cmd>Lspsaga signature_help<cr>', opts)
+vim.keymap.set('n', 'gp', '<cmd>Lspsaga preview_definition<cr>', opts)
+vim.keymap.set('n', 'gr', '<cmd>Lspsaga rename<cr>', opts)
+vim.keymap.set('n', 'ga', '<cmd>Lspsaga code_action<cr>', opts)
 
-map("n", "<F3>", ":e ~/alacritty/alacritty.yml<CR>", opts)
+-- remap copy paste
+vim.keymap.set('n', 'x', '"_x', opts)
+-- vim.keymap.set('n', 'dd', '"_dd', opts)
+-- vim.keymap.set('n', 'dw', '"_dw', opts)
+vim.keymap.set('n', 'ciw', '"_ciw', opts)
+-- vim.keymap.set('i', '<leader>p', '<esc>p', opts)
+
+
+map("n", "<F6>", ":e ~/todo.txt<cr>", opts)

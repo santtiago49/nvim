@@ -25,6 +25,7 @@ local cmp = require('cmp')
     },
     mapping = cmp.mapping.preset.insert {
         ['<Tab>'] = cmp.mapping.confirm({select = true}),
+        ['<C-Space>'] = cmp.mapping.complete(),
         ["<C-h>"] = function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()

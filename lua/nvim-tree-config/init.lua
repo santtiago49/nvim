@@ -1,3 +1,5 @@
+local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+
 require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
       auto_reload_on_write = true,
       create_in_closed_folder = false,
@@ -23,18 +25,26 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
       view = {
         adaptive_size = true,
         centralize_selection = false,
-        width = 30,
+        width = 25,
         hide_root_folder = false,
         side = "left",
         preserve_window_proportions = true,
-        number = false,
-        relativenumber = false,
+        number = true,
+        relativenumber = true,
         signcolumn = "yes",
         mappings = {
           custom_only = false,
           list = {
             -- user mappings go here
+            { key = { '<CR>', '<2-LeftMouse>' }, cb = tree_cb('edit') },
             { key = "<C-t>", action = "" },
+            { key = "c", cb = tree_cb('create') },
+            { key = 'd', cb = tree_cb('cut') },
+            { key = 'D', cb = tree_cb('remove') },
+            { key = 'y', cb = tree_cb('copy') },
+            { key = 'p', cb = tree_cb('paste') },
+            { key = 'gyn', cb = tree_cb('copy_name') },
+            { key = 'gyp', cb = tree_cb('copy_path') },
           },
         },
         float = {
@@ -206,5 +216,3 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
         },
       },
     } -- END_DEFAULT_OPTS
-
-

@@ -5,9 +5,9 @@ local set = vim.opt
 set.expandtab = true -- Tabs to Spaces
 -- set.noswapfile = true
 set.smarttab = true
-set.shiftwidth = 4
-set.softtabstop = 4 -- I have a special configuration for each file in ftplugin/
-set.tabstop = 4
+set.shiftwidth = 2
+set.softtabstop = 2 -- I have a special configuration for each file in ftplugin/
+set.tabstop = 2
 set.hlsearch = true -- Highlight all matches while searching
 set.incsearch = true -- Highlight all matches while searching
 set.ignorecase = true -- Ignorecase ins search pattern
@@ -55,11 +55,11 @@ set.ruler = false
 -- Lua initialization file
 
 
--- vim.cmd [[colorscheme tokyonight]]
+vim.cmd [[colorscheme catppuccin]]
 -- vim.g.tokyonight_transparent_sidebar = true
 -- vim.g.tokyonight_transparent = true-- vim.cmd("colorscheme catppuccin")
 -- set.highlight = 'Normal ctermbg=none'
--- set.highlight = 'NonText ctermbg=none'
+-- highlight = 'NonText ctermbg=none'
 
 
 -- Notifications --
