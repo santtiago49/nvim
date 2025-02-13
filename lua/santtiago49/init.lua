@@ -1,0 +1,6 @@
+require("santtiago49.remap")
+require("santtiago49.packer")
+require("santtiago49.set")
+-- require("santtiago49.remap")
+-- require("santtiago49.remap")
+-- print("hello from santtiago49")
