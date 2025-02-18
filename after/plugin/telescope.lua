@@ -1,56 +1,69 @@
 local actions = require("telescope.actions")
-local trouble = require("trouble.providers.telescope")
-
 local telescope = require("telescope")
 
--- Configure Telescope with Trouble integration
--- telescope.setup({
---   defaults = {
---     mappings = {
---       i = {
---         ["<c-t>"] = trouble.open_with_trouble,  -- Open in Trouble (insert mode)
---         ["<a-t>"] = trouble.add_to_trouble,     -- Add to Trouble (insert mode)
---       },
---       n = {
---         ["<c-t>"] = trouble.open_with_trouble,  -- Open in Trouble (normal mode)
---         ["<a-t>"] = trouble.add_to_trouble,     -- Add to Trouble (normal mode)
---       },
---     },
---   },
--- })
+-- 🔥 Optimize Telescope Defaults
+telescope.setup({
+    defaults = {
+        mappings = {
+            i = {
+                ["<esc>"] = actions.close, -- Close Telescope with Esc
+            },
+            n = {
+                ["q"] = actions.close,     -- Close Telescope with 'q'
+            },
+        },
+        file_ignore_patterns = {
+            "node_modules/*",
+            "postgres/*",
+            "dist/*",
+            "build/*",
+            "coverage/*",
+            ".git/*",
+            ".cache/*",
+            "vendor/*",        -- PHP/Go dependencies
+            "target/*",        -- Rust build folder
+            "bin/*",           -- Compiled binaries
+            "obj/*",           -- C#/C++ object files
+            "logs/*",          -- Log files
+            "out/*",           -- Common output directory
+            ".venv/*",         -- Python virtual environment
+            "__pycache__/*"    -- Python cache files
+        },
+    }
+})
 
--- Your existing Telescope keymaps with Trouble support
 local builtin = require('telescope.builtin')
+
+-- 🔎 Find Files (`<leader>pf>`)
 vim.keymap.set('n', '<leader>pf', function()
-    builtin.find_files({
-        -- hidden = true,  -- Include hidden files (e.g., dotfiles)
-        no_ignore = true,  -- Include ignored files
-        -- no_ignore_parent = true,  -- Include files ignored by parent `.gitignore`
-    })
-end, { desc = "Find files including hidden and ignored" })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+    builtin.find_files({ no_ignore = true })
+end, { desc = "Find files (excluding ignored folders)" })
+
+-- 📂 Open Buffers (`<leader>fb>`)
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Find open buffers" })
+
+-- 🛠 Git-tracked Files (`<C-p>`)
+vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = "Find git-tracked files" })
+
+-- 🔍 Grep (`<leader>ps>`)
 vim.keymap.set('n', '<leader>ps', function()
     builtin.grep_string({
         search = vim.fn.input("Grep > "),
         additional_args = function(args)
             return vim.tbl_flatten({
                 args,
-                -- "--hidden",           -- Include hidden files
-                -- "--no-ignore",        -- Include files ignored by .gitignore
-                "--glob=!**/plugin/packer_compiled.lua"  -- Exclude specific file
+                "--glob=!**/plugin/packer_compiled.lua",  -- Exclude specific file
+                "--glob=!**/{node_modules,dist,coverage,postgres}/*" -- Ignore common large folders
             })
         end
     })
-end, { desc = "Grep string including hidden and ignored files" })
+end, { desc = "Live Grep with file exclusions" })
 
--- Optional: Create dedicated Trouble+Telescope keymaps
--- vim.keymap.set('n', '<leader>pt', function()
---   builtin.find_files({
---     attach_mappings = function(_, map)
---       map('i', '<c-t>', trouble.open_with_trouble)
---       map('n', '<c-t>', trouble.open_with_trouble)
---       return true
---     end
---   })
--- end, { desc = "Find files with Trouble integration" })
+
+-- Find LSP references
+vim.keymap.set('n', '<leader>fr', function()
+    builtin.lsp_references({
+        show_line = true,
+        fname_width = 50,
+    })
+end, { desc = "Find LSP references" })
