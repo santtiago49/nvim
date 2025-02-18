@@ -1,0 +1,3 @@
+require("nuget").setup({
+    keys = {}
+})
