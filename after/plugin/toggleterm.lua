@@ -1,21 +1,18 @@
-local toggleterm = require("toggleterm")
+local Terminal = require("toggleterm.terminal").Terminal
 
-toggleterm.setup({
-    size = 15,                -- Height of horizontal terminal
-    open_mapping = [[<C-\>]], -- Shortcut to toggle terminal
-    direction = "horizontal", -- Open terminal in horizontal split
-    shade_terminals = true,
-    persist_size = true,
-    start_in_insert = true,
-    close_on_exit = true,
-    shell = vim.o.shell,
-})
+-- Create a global terminal instance
+_G.global_term = _G.global_term or Terminal:new({ direction = "horizontal", hidden = true })
 
--- Function to toggle horizontal terminal
+-- Function to toggle or close the terminal
 function _toggle_horizontal_term()
-    vim.cmd("ToggleTerm direction=horizontal")
+    if _G.global_term:is_open() then
+        _G.global_term:close()
+    else
+        _G.global_term:toggle()
+    end
 end
 
+-- Keybindings
 vim.api.nvim_set_keymap("n", "<C-\\>", "<cmd>lua _toggle_horizontal_term()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<C-\\>", "<cmd>ToggleTerm<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<C-\\>", "<cmd>lua _toggle_horizontal_term()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
