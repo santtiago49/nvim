@@ -7,7 +7,10 @@ return require('packer').startup(function(use)
     -- Telescope for fuzzy finding
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.8',
-        requires = { { 'nvim-lua/plenary.nvim' } }
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'folke/trouble.nvim'
+        }
     }
 
     -- Colorscheme
@@ -49,4 +52,26 @@ return require('packer').startup(function(use)
 
     -- toggle term
     use {"akinsho/toggleterm.nvim"}
+
+
+    use {
+        "d7omdev/nuget.nvim",
+        config = function()
+            require("nuget").setup()
+        end,
+    }
+
+    -- trouble.nvim
+    use {
+      'folke/trouble.nvim',
+      requires = 'nvim-tree/nvim-web-devicons',
+      config = function()
+        require("trouble").setup()
+      end
+    }
+
+    -- lsp colors
+    use { 'folke/lsp-colors.nvim' }
+    use { 'nvimdev/lspsaga.nvim' }
+
 end)

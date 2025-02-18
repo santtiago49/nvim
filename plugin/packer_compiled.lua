@@ -125,6 +125,16 @@ _G.packer_plugins = {
     path = "/Users/santiagogomez/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
   },
+  ["lsp-colors.nvim"] = {
+    loaded = true,
+    path = "/Users/santiagogomez/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim",
+    url = "https://github.com/folke/lsp-colors.nvim"
+  },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/Users/santiagogomez/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
+    url = "https://github.com/nvimdev/lspsaga.nvim"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/Users/santiagogomez/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -134,6 +144,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/santiagogomez/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["nuget.nvim"] = {
+    config = { "\27LJ\2\n3\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\nnuget\frequire\0" },
+    loaded = true,
+    path = "/Users/santiagogomez/.local/share/nvim/site/pack/packer/start/nuget.nvim",
+    url = "https://github.com/d7omdev/nuget.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -149,6 +165,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/santiagogomez/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/Users/santiagogomez/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -169,6 +190,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/santiagogomez/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
+  },
+  ["trouble.nvim"] = {
+    config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\ftrouble\frequire\0" },
+    loaded = true,
+    path = "/Users/santiagogomez/.local/share/nvim/site/pack/packer/start/trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
   },
   undotree = {
     loaded = true,
@@ -198,6 +225,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
+time([[Config for trouble.nvim]], false)
+-- Config for: nuget.nvim
+time([[Config for nuget.nvim]], true)
+try_loadstring("\27LJ\2\n3\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\nnuget\frequire\0", "config", "nuget.nvim")
+time([[Config for nuget.nvim]], false)
 -- Config for: gruvbox
 time([[Config for gruvbox]], true)
 try_loadstring("\27LJ\2\n;\0\0\3\0\4\0\0066\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\1K\0\1\0\fgruvbox\16colorscheme\bcmd\bvim\0", "config", "gruvbox")
