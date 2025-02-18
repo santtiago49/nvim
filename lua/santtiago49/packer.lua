@@ -74,4 +74,9 @@ return require('packer').startup(function(use)
     use { 'folke/lsp-colors.nvim' }
     use { 'nvimdev/lspsaga.nvim' }
 
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+
 end)
